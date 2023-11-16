@@ -6,6 +6,7 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 
 BOT_NAME = "books"
 
@@ -13,10 +14,14 @@ SPIDER_MODULES = ["books.spiders"]
 NEWSPIDER_MODULE = "books.spiders"
 
 # set up postgres
-POSTGRES_USERNAME = "crawler"
-POSTGRES_PASSWORD = "{!fl4g_3nv_1s_b3tt3r}"
-POSTGRES_SERVER = "localhost"
-POSTGRES_DB = "books"
+POSTGRES_USERNAME = os.environ.get("POSTGRES_USERNAME")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
+POSTGRES_SERVER = os.environ.get("POSTGRES_SERVER")
+POSTGRES_DB = os.environ.get("POSTGRES_DB")
+# POSTGRES_USERNAME = "crawler"
+# POSTGRES_PASSWORD = "{!fl4g_3nv_1s_b3tt3r}"
+# POSTGRES_SERVER = "localhost"
+# POSTGRES_DB = "books"
 POSTGRES_DRIVER_URL = ("postgresql://{}:{}@{}/{}"
                        .format(POSTGRES_USERNAME, POSTGRES_PASSWORD, POSTGRES_SERVER, POSTGRES_DB))
 

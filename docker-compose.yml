@@ -1,0 +1,43 @@
+version: "3"
+services:
+  web:
+    build: frontend/
+    #    ports:
+    #      - "3000:3000"
+    network_mode: host
+  database:
+    environment:
+      - POSTGRES_USER=crawler
+      - POSTGRES_PASSWORD={!fl4g_3nv_b3tt3r}
+      - POSTGRES_DB=books
+    build: database/
+    #    ports:
+    #      - "5432:5432"
+    network_mode: host
+  backend:
+    environment:
+    # adding crawler database credentials
+      - POSTGRES_USERNAME=crawler
+      - POSTGRES_PASSWORD={!fl4g_3nv_b3tt3r}
+      - POSTGRES_SERVER=localhost
+      - POSTGRES_DB=books
+    # adding fastapi database credentials
+      - DB_USER=crawler
+      - DB_PASSWORD={!fl4g_3nv_b3tt3r}
+      - DB_SERVER=localhost
+      - DB_NAME=books
+      - SCRAPY_START_LOCATION=./crawler/books
+    build: backend/
+    #    ports:
+    #      - "8000:8000"
+    depends_on:
+      - database
+    network_mode: host
+  # crawler:
+  #   environment:
+  #     - POSTGRES_USERNAME=crawler
+  #     - POSTGRES_PASSWORD={!fl4g_3nv_b3tt3r}
+  #     - POSTGRES_SERVER=localhost
+  #     - POSTGRES_DB=books
+  #   build: crawler/
+  #   network_mode: host

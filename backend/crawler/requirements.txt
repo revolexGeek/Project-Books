@@ -99,10 +99,6 @@ sqlalchemy==2.0.23
     # via -r requirements.in
 tldextract==5.1.0
     # via scrapy
-twisted==22.10.0
-    # via scrapy
-twisted-iocpsupport==1.0.4
-    # via twisted
 typing-extensions==4.8.0
     # via
     #   sqlalchemy
