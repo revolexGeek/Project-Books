@@ -13,6 +13,15 @@ from database import schemas
 from database.models import Book
 
 
+def drop_db(db: Session):
+    try:
+        db.query(models.Book).delete()
+        db.commit()
+        return True
+    except Exception as e:
+        return False
+
+
 def get_crawler_state(db: Session) -> Union[dict, None]:
     """
     Получение состояния парсера

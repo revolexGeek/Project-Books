@@ -619,6 +619,7 @@ img.magazine:hover {
     .navbar, .page {
         padding: 16px 128px;
     }
+
     .footer {
         padding: 36px 128px;
     }
@@ -628,7 +629,20 @@ img.magazine:hover {
     .navbar, .footer, .page {
         padding: 16px 256px;
     }
+
     .footer {
         padding: 36px 128px;
     }
 }
+
+.logo_main {
+    transition: all 1s;
+}
+
+.logo_main:hover {
+    border-radius: 48px;
+    height: 128px;
+    width: 128px;
+    transition: all 1s;
+}
+

@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse
 
 from database.crud import find_by_upc, find_by_name, sort_by_price, sort_by_rating, get_crawler_state, start_crawler, \
-    get_all_books, reset_crawler, get_books_limit
+    get_all_books, reset_crawler, get_books_limit, drop_db
 
 import database.schemas
 from database.db import SessionLocal
@@ -26,6 +26,18 @@ router = APIRouter()
 @router.get("/")
 async def root():
     return RedirectResponse(url="/docs")
+
+
+@router.post("/drop")
+async def drop_table(db: Session = Depends(get_db)):
+    if drop_db(db):
+        return {
+            "response": "success"
+        }
+    else:
+        return {
+            "response": "failed"
+        }
 
 
 @router.get("/table", response_model=List[database.schemas.Book])
