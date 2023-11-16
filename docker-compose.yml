@@ -33,11 +33,9 @@ services:
     depends_on:
       - database
     network_mode: host
-  # crawler:
-  #   environment:
-  #     - POSTGRES_USERNAME=crawler
-  #     - POSTGRES_PASSWORD={!fl4g_3nv_b3tt3r}
-  #     - POSTGRES_SERVER=localhost
-  #     - POSTGRES_DB=books
-  #   build: crawler/
-  #   network_mode: host
+  pgadmin:
+    image: dpage/pgadmin4
+    network_mode: host
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password

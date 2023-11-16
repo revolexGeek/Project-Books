@@ -3,7 +3,7 @@ from typing import List, Optional, Union, Type
 from sqlalchemy.orm import Session
 
 from database import models
-
+from sqlalchemy import text
 from sqlalchemy import or_
 from sqlalchemy import func
 from config import scrapy_start_location
@@ -16,10 +16,18 @@ from database.models import Book
 def drop_db(db: Session):
     try:
         db.query(models.Book).delete()
+        db.execute(text("ALTER SEQUENCE books_id_seq RESTART WITH 1"))  # Replace 'book_id_seq' with your actual sequence name
         db.commit()
-        return True
+        return {
+            "success": True,
+            "message": "Successfully dropped books table rows and id sequence!"
+        }
     except Exception as e:
-        return False
+        return {
+            "success": False,
+            "message": "Failed to drop the books table rows and id sequence!",
+            "error": str(e)
+        }
 
 
 def get_crawler_state(db: Session) -> Union[dict, None]:

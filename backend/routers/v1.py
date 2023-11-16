@@ -30,14 +30,7 @@ async def root():
 
 @router.post("/drop")
 async def drop_table(db: Session = Depends(get_db)):
-    if drop_db(db):
-        return {
-            "response": "success"
-        }
-    else:
-        return {
-            "response": "failed"
-        }
+    return drop_db(db)
 
 
 @router.get("/table", response_model=List[database.schemas.Book])

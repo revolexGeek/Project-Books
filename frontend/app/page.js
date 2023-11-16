@@ -34,7 +34,7 @@ function function_card(title, description, icon, link) {
 const baseUrl = "http://localhost:8000/api/v1/drop"
 
 export default function Home() {
-    const [data, setData] = useState('');
+    const [data, setData] = useState(false);
     const deleteAllData = async () => {
         const response = await fetch(baseUrl, {
             method: "POST", headers: {
@@ -42,7 +42,7 @@ export default function Home() {
             }
         });
         let rData = await response.json();
-        setData(rData.response)
+        setData(rData.success)
 
     }
 
@@ -72,12 +72,9 @@ export default function Home() {
                                     данные о книгах</p>
                             </div>
                         </div>
-                        {data && data.response ? (<div style={{marginTop: 8}}>
+                        {data && data === true ? (<div style={{marginTop: 8}}>
                             <p><b>Данные были удалены <span style={{color: "greenyellow"}}>успешно!</span></b>
-                            </p>
-                            <span><Link
-                                href="/gather"></Link>Перейти к вклдаке <u>«Полный сбор данных»</u></span>
-                        </div>) : null}
+                            </p></div>) : null}
 
                     </Link>
 
