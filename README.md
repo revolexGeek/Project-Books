@@ -42,9 +42,9 @@ and [Next.js](https://nextjs.org/), который предназначен дл
 
 На видео можно увидеть возможности приложения
 
-![Графический интерфейс](assets/workflow.mp4)
-
-[Открыть файлом](assets/workflow.mp4) (Если не работает embedded)
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=eGc50fXARvQ" target="_blank">
+ <img src="assets/thumbnail.png" alt="Видео" width="960" height="480" border="10" />
+</a>
 
 ## Установка и настройка
 
